@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  backend:
+    build: .
+    container_name: api-systock
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - backend
+
+  redis:
+    image: redis:7.2.1
+    container_name: redis-systock
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
